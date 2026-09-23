@@ -10,8 +10,56 @@ from ipython_inspector import inspect_site
 
 MODEL = "openai/gpt-oss-120b"
 
+def compact_evidence(evidence):
+    compact = {
+        "url": evidence.get("url"),
+        "title": evidence.get("title"),
+        "final_url": evidence.get("final_url"),
+        "review_containers": evidence.get("review_containers", []),
+        "field_examples": evidence.get("field_examples", {}),
+        "pagination": evidence.get("pagination", []),
+        "rating_examples": evidence.get("rating_examples", []),
+        "candidate_review_containers": evidence.get(
+            "candidate_review_containers", []
+        ),
+        "dynamic_network": []
+    }
+
+    # Keep only useful network evidence.
+    # Avoid sending telemetry, analytics, and huge request bodies.
+    for item in evidence.get("dynamic_network", []):
+        url = item.get("url", "")
+
+        if any(
+            blocked in url.lower()
+            for blocked in (
+                "nr-data.net",
+                "newrelic",
+                "bam.nr-data.net",
+                "collector/business"
+            )
+        ):
+            continue
+
+        compact["dynamic_network"].append({
+            "url": url,
+            "method": item.get("method"),
+            "status": item.get("status"),
+            "content_type": item.get("content_type"),
+            "request_body": (
+                item.get("request_body") or ""
+            )[:1000],
+            "response_preview": (
+                item.get("response_preview") or ""
+            )[:2000],
+        })
+
+    return compact
+
 
 def call_groq(evidence):
+    evidence = compact_evidence(evidence)
+
     api_key = os.environ.get("GROQ_API_KEY")
 
     if not api_key:
@@ -28,12 +76,20 @@ TARGET URL:
 
 Requirements:
 - Use playwright.async_api.
+- Import the Playwright timeout exception exactly as:
+  from playwright.async_api import TimeoutError as PlaywrightTimeoutError
+- Do NOT import PlaywrightTimeoutError directly from playwright.async_api.
 - Launch Chromium headless.
 - Extract reviews from the actual selectors in the evidence.
 - Handle the actual pagination/loading mechanism shown in the evidence.
 - Extract review_text, rating, and date.
 - If dynamic_network evidence is present, inspect it carefully and use the actual captured request URL, response type, and response HTML structure when determining how reviews load.
 - Prefer the observed browser network behavior over assumptions about GraphQL, REST, or static HTML.
+- NEVER invent or guess CSS selectors, XPath selectors, class names, data attributes, endpoints, or field selectors.
+- Every selector used in the generated scraper MUST be directly supported by review_containers, field_examples, or candidate_review_containers in the provided evidence.
+- If review_containers is empty, candidate_review_containers is the primary evidence for discovering the repeated review structure.
+- Candidate evidence contains observed DOM text and field structure, not guaranteed selectors. Infer the smallest generic DOM traversal needed from the observed structure; do not substitute selectors from prior knowledge of the target website.
+- Do not use remembered selectors from Flipkart, Amazon, Google, or any other website.
 - Do NOT use GraphQL merely because graphql_or_api_schema contains a token, schema text, or query example. Use GraphQL only if the evidence shows that the page actually loads reviews through GraphQL.
 - If the observed network response is an HTML fragment, parse that HTML with Playwright or an equivalent HTML parser instead of inventing a JSON or GraphQL API.
 - If the observed request depends on browser context, referrer, cookies, or other page state, trigger or reproduce that request from the existing Playwright page/context rather than navigating directly to the API URL.
@@ -74,8 +130,7 @@ Do not use Markdown fences.
             }
         ],
         "temperature": 0,
-        "max_tokens": 2500,
-      "reasoning_effort": "low",
+        "max_tokens": 5000,
     }
 
     request = urllib.request.Request(
@@ -89,9 +144,10 @@ Do not use Markdown fences.
         method="POST",
     )
 
-    with urllib.request.urlopen(request, timeout=120) as response:
+    with urllib.request.urlopen(request, timeout=300) as response:
         result = json.loads(response.read().decode("utf-8"))
 
+    print("[OPENROUTER] Finish reason:", result["choices"][0].get("finish_reason"))
     return result["choices"][0]["message"]["content"]
 
 
@@ -115,10 +171,20 @@ async def main():
 
     code = call_groq(evidence)
 
-    # Remove Markdown fences if the model ignores the instruction.
-    code = re.sub(r"^```python\s*", "", code.strip())
-    code = re.sub(r"^```\s*", "", code)
-    code = re.sub(r"\s*```$", "", code)
+    # Clean model output: remove Markdown fences and prose before Python source.
+    code = code.strip()
+    fenced = re.search(r"```(?:python)?\s*(.*?)```", code, re.DOTALL | re.IGNORECASE)
+    if fenced:
+        code = fenced.group(1).strip()
+    else:
+        lines = code.splitlines()
+        start = None
+        for i, line in enumerate(lines):
+            if re.match(r"^\s*(?:from\s+\S+\s+import\s+|import\s+\S+)", line):
+                start = i
+                break
+        if start is not None:
+            code = "\n".join(lines[start:]).strip()
 
     output_dir = "generated"
     os.makedirs(output_dir, exist_ok=True)

@@ -1,0 +1,575 @@
+{
+  "url": "https://web-scraping.dev/reviews",
+  "title": "web-scraping.dev latest product reviews | graphql mock website",
+  "final_url": "https://web-scraping.dev/reviews",
+  "review_containers": [
+    {
+      "selector": "[data-testid='review']",
+      "count": 20
+    },
+    {
+      "selector": "[data-testid*='review']",
+      "count": 80
+    },
+    {
+      "selector": "div.review",
+      "count": 20
+    },
+    {
+      "selector": "[class~='review']",
+      "count": 20
+    },
+    {
+      "selector": "[class*='review']",
+      "count": 21
+    }
+  ],
+  "field_examples": {
+    "review_text": [
+      {
+        "selector": "[data-testid=\"review-text\"]",
+        "tag": "p",
+        "class": "",
+        "data_testid": "review-text",
+        "example": "The best sneakers I've bought in a long time. Stylish, comfortable and the leather quality is top-notch."
+      },
+      {
+        "selector": "[data-testid=\"review-text\"]",
+        "tag": "p",
+        "class": "",
+        "data_testid": "review-text",
+        "example": "Nice design and good quality, but a bit too tight for me. Otherwise, it's a pretty cool beanie."
+      },
+      {
+        "selector": "[data-testid=\"review-text\"]",
+        "tag": "p",
+        "class": "",
+        "data_testid": "review-text",
+        "example": "It’s fun, tastes good, and the energy boost is helpful during intense gaming sessions."
+      },
+      {
+        "selector": "[data-testid=\"review-text\"]",
+        "tag": "p",
+        "class": "",
+        "data_testid": "review-text",
+        "example": "These shoes are a hit with my twins. They love the lights and they seem to be quite durable."
+      },
+      {
+        "selector": "[data-testid=\"review-text\"]",
+        "tag": "p",
+        "class": "",
+        "data_testid": "review-text",
+        "example": "Excellent boots for outdoor adventures. They offer great support and are very comfortable."
+      },
+      {
+        "selector": "[data-testid=\"review-text\"]",
+        "tag": "p",
+        "class": "",
+        "data_testid": "review-text",
+        "example": "Delicious chocolates, and the box is pretty substantial. It'd make a nice gift."
+      },
+      {
+        "selector": "[data-testid=\"review-text\"]",
+        "tag": "p",
+        "class": "",
+        "data_testid": "review-text",
+        "example": "Unique flavor and great energy boost. It's the perfect gamer's drink!"
+      },
+      {
+        "selector": "[data-testid=\"review-text\"]",
+        "tag": "p",
+        "class": "",
+        "data_testid": "review-text",
+        "example": "Excellent energy drink for gamers. The tropical flavor is refreshing."
+      }
+    ],
+    "date": [
+      {
+        "selector": "[data-testid=\"review-date\"]",
+        "tag": "span",
+        "class": "",
+        "data_testid": "review-date",
+        "example": "2023-05-15"
+      },
+      {
+        "selector": "[data-testid=\"review-date\"]",
+        "tag": "span",
+        "class": "",
+        "data_testid": "review-date",
+        "example": "2023-05-01"
+      },
+      {
+        "selector": "[data-testid=\"review-date\"]",
+        "tag": "span",
+        "class": "",
+        "data_testid": "review-date",
+        "example": "2023-05-15"
+      },
+      {
+        "selector": "[data-testid=\"review-date\"]",
+        "tag": "span",
+        "class": "",
+        "data_testid": "review-date",
+        "example": "2023-05-10"
+      },
+      {
+        "selector": "[data-testid=\"review-date\"]",
+        "tag": "span",
+        "class": "",
+        "data_testid": "review-date",
+        "example": "2023-05-01"
+      },
+      {
+        "selector": "[data-testid=\"review-date\"]",
+        "tag": "span",
+        "class": "",
+        "data_testid": "review-date",
+        "example": "2023-04-18"
+      },
+      {
+        "selector": "[data-testid=\"review-date\"]",
+        "tag": "span",
+        "class": "",
+        "data_testid": "review-date",
+        "example": "2023-05-18"
+      },
+      {
+        "selector": "[data-testid=\"review-date\"]",
+        "tag": "span",
+        "class": "",
+        "data_testid": "review-date",
+        "example": "2023-05-16"
+      }
+    ],
+    "reviewer_name": [
+      {
+        "selector": null,
+        "tag": "derived",
+        "class": null,
+        "data_testid": null,
+        "example": "It’s fun"
+      },
+      {
+        "selector": null,
+        "tag": "derived",
+        "class": null,
+        "data_testid": null,
+        "example": "Delicious chocolates"
+      }
+    ]
+  },
+  "pagination": [],
+  "scroll_containers": [],
+  "scroll_observation": [
+    {
+      "step": 0,
+      "action": "initial",
+      "scrollTop": 0,
+      "scrollHeight": 1230,
+      "clientHeight": 1000,
+      "innerHeight": 1000
+    },
+    {
+      "step": 1,
+      "action": "scroll",
+      "scrollTop": 230,
+      "scrollHeight": 1230,
+      "clientHeight": 1000,
+      "innerHeight": 1000,
+      "scroll_top_changed": true,
+      "scroll_height_changed": false
+    },
+    {
+      "step": 2,
+      "action": "scroll",
+      "scrollTop": 230,
+      "scrollHeight": 1230,
+      "clientHeight": 1000,
+      "innerHeight": 1000,
+      "scroll_top_changed": false,
+      "scroll_height_changed": false
+    },
+    {
+      "step": 3,
+      "action": "reset_to_top",
+      "scrollTop": 0,
+      "scrollHeight": 1230,
+      "clientHeight": 1000
+    }
+  ],
+  "scroll_container_observation": [],
+  "graphql_or_api_schema": [
+    {
+      "preview": "query GetReviews($first: Int, $after: String) { reviews(first: $first, after: $after) { edges { node { rid text rating date } cursor } pageInfo { startCursor endCursor hasPreviousPage hasNextPage } } }"
+    },
+    {
+      "preview": "<div class=\"review\" data-review-id=\"{{review['rid']}}\" data-testid=\"review\"> <span data-testid=\"review-date\">{{review['date']}}</span> <span data-testid=\"review-stars\"> {% for i in range(review['rating']) %} <svg width=\"20px\" height=\"20px\" viewBox=\"0 0 64 64\" role=\"img\"><path d=\"M62 25.2H39.1L32 3l-7.1 22.2H2l18.5 13.7l-7 22.1L32 47.3L50.5 61l-7.1-22.2L62 25.2z\" fill=\"#ffce31\"></path></svg> {% endfor %} </span> <p data-testid=\"review-text\">{{review['text']}}</p> </div>"
+    },
+    {
+      "preview": "async function loadPage(first) { const root = document.getElementById('latest-reviews'); const spinner = document.getElementById('page-spinner'); const loadMore = document.getElementById('page-load-more'); spinner.classList.remove('d-none'); loadMore.classList.add('d-none'); const lastCursor = root.dataset.lastCursor; const query = document.getElementById('reviewsGQL').textContent; const firstPage = await fetch( \"/api/graphql\", { method: \"POST\", headers: { \"Content-Type\": \"application/json\", \"Accept\": \"application/json\", }, body: JSON.stringify({ query: query, variables: { first: first, after: lastCursor} }) } ) const template = document.getElementById('review-template').innerHTML; const data = (await firstPage.json()).data const edges = data.reviews.edges for (const edge of edges) { let element = document.createElement('div'); element.innerHTML = nunjucks.renderString(template, {review: edge.node}); root.appendChild(element.firstElementChild); root.dataset.lastCursor = edge.cursor; } "
+    }
+  ],
+  "rating_examples": [
+    "1.3"
+  ],
+  "candidate_review_containers": [
+    {
+      "score": 18,
+      "text_length": 115,
+      "text": "2023-05-15 The best sneakers I've bought in a long time. Stylish, comfortable and the leather quality is top-notch.",
+      "tag": "div",
+      "class": "review",
+      "data_testid": "review",
+      "id": null,
+      "dom_path": "div#latest-reviews > div.review:nth-child(5)",
+      "xpath": "/html[1]/body[1]/div[1]/div[2]/div[1]/div[5]",
+      "stable_locator": "[data-testid=\"review\"]",
+      "parent_context": "2023-05-18 Unique flavor and great energy boost. It's the perfect gamer's drink! 2023-05-17 Good flavor and keeps me energized. The bottle design is really fun. 2023-05-16 Excellent energy drink for gamers. The tropical flavor is refreshing. 2023-05-15 It’s fun, tastes good, and the energy boost is helpful during intense gaming sessions. 2023-05-15 The best sneakers I've bought in a long time. Stylish, comfortable and the leather quality is top-notch. 2023-05-12 The cherry cola flavor is a win. Keeps me energized and focused. 2023-05-10 These shoes are a hit with my twins. They love the lights and they seem to be quite durable. 2023-05-01 Excellent boots for outdoor adventures. They offer great support and are very comfortable. 2023-05-01 Nice design and good quality, but a bit too tight for me. Otherwise, it's a pretty cool beanie. 2023-04-25 Really enjoyed the citrus flavor and the energy boost it gives. 2023-04-25 Great concept, but the sizing is a bit off. Order a size larger. 2023-04-18 Delicious chocolates, and the box is pretty substantial. It'd make a nice gift. 2023-04-12 The boots are durable, but the laces could be better quality. 2023-04-11 This potion is a game changer",
+      "fields": {
+        "review_text": {
+          "selector": "[data-testid=\"review-text\"]",
+          "scope": "relative",
+          "tag": "p",
+          "class": "",
+          "data_testid": "review-text",
+          "id": "",
+          "example": "The best sneakers I've bought in a long time. Stylish, comfortable and the leather quality is top-notch.",
+          "source": "dom_semantic",
+          "confidence": 0.9
+        },
+        "date": {
+          "selector": "[data-testid=\"review-date\"]",
+          "scope": "relative",
+          "tag": "span",
+          "class": "",
+          "data_testid": "review-date",
+          "id": "",
+          "example": "2023-05-15",
+          "source": "dom_semantic",
+          "confidence": 0.94
+        }
+      },
+      "rating_example": null,
+      "date_example": "2023-05-15"
+    },
+    {
+      "score": 17,
+      "text_length": 106,
+      "text": "2023-05-01 Nice design and good quality, but a bit too tight for me. Otherwise, it's a pretty cool beanie.",
+      "tag": "div",
+      "class": "review",
+      "data_testid": "review",
+      "id": null,
+      "dom_path": "div#latest-reviews > div.review:nth-child(9)",
+      "xpath": "/html[1]/body[1]/div[1]/div[2]/div[1]/div[9]",
+      "stable_locator": "[data-testid=\"review\"]",
+      "parent_context": "2023-05-18 Unique flavor and great energy boost. It's the perfect gamer's drink! 2023-05-17 Good flavor and keeps me energized. The bottle design is really fun. 2023-05-16 Excellent energy drink for gamers. The tropical flavor is refreshing. 2023-05-15 It’s fun, tastes good, and the energy boost is helpful during intense gaming sessions. 2023-05-15 The best sneakers I've bought in a long time. Stylish, comfortable and the leather quality is top-notch. 2023-05-12 The cherry cola flavor is a win. Keeps me energized and focused. 2023-05-10 These shoes are a hit with my twins. They love the lights and they seem to be quite durable. 2023-05-01 Excellent boots for outdoor adventures. They offer great support and are very comfortable. 2023-05-01 Nice design and good quality, but a bit too tight for me. Otherwise, it's a pretty cool beanie. 2023-04-25 Really enjoyed the citrus flavor and the energy boost it gives. 2023-04-25 Great concept, but the sizing is a bit off. Order a size larger. 2023-04-18 Delicious chocolates, and the box is pretty substantial. It'd make a nice gift. 2023-04-12 The boots are durable, but the laces could be better quality. 2023-04-11 This potion is a game changer",
+      "fields": {
+        "review_text": {
+          "selector": "[data-testid=\"review-text\"]",
+          "scope": "relative",
+          "tag": "p",
+          "class": "",
+          "data_testid": "review-text",
+          "id": "",
+          "example": "Nice design and good quality, but a bit too tight for me. Otherwise, it's a pretty cool beanie.",
+          "source": "dom_semantic",
+          "confidence": 0.9
+        },
+        "date": {
+          "selector": "[data-testid=\"review-date\"]",
+          "scope": "relative",
+          "tag": "span",
+          "class": "",
+          "data_testid": "review-date",
+          "id": "",
+          "example": "2023-05-01",
+          "source": "dom_semantic",
+          "confidence": 0.94
+        }
+      },
+      "rating_example": null,
+      "date_example": "2023-05-01"
+    },
+    {
+      "score": 17,
+      "text_length": 97,
+      "text": "2023-05-15 It’s fun, tastes good, and the energy boost is helpful during intense gaming sessions.",
+      "tag": "div",
+      "class": "review",
+      "data_testid": "review",
+      "id": null,
+      "dom_path": "div#latest-reviews > div.review:nth-child(4)",
+      "xpath": "/html[1]/body[1]/div[1]/div[2]/div[1]/div[4]",
+      "stable_locator": "[data-testid=\"review\"]",
+      "parent_context": "2023-05-18 Unique flavor and great energy boost. It's the perfect gamer's drink! 2023-05-17 Good flavor and keeps me energized. The bottle design is really fun. 2023-05-16 Excellent energy drink for gamers. The tropical flavor is refreshing. 2023-05-15 It’s fun, tastes good, and the energy boost is helpful during intense gaming sessions. 2023-05-15 The best sneakers I've bought in a long time. Stylish, comfortable and the leather quality is top-notch. 2023-05-12 The cherry cola flavor is a win. Keeps me energized and focused. 2023-05-10 These shoes are a hit with my twins. They love the lights and they seem to be quite durable. 2023-05-01 Excellent boots for outdoor adventures. They offer great support and are very comfortable. 2023-05-01 Nice design and good quality, but a bit too tight for me. Otherwise, it's a pretty cool beanie. 2023-04-25 Really enjoyed the citrus flavor and the energy boost it gives. 2023-04-25 Great concept, but the sizing is a bit off. Order a size larger. 2023-04-18 Delicious chocolates, and the box is pretty substantial. It'd make a nice gift. 2023-04-12 The boots are durable, but the laces could be better quality. 2023-04-11 This potion is a game changer",
+      "fields": {
+        "review_text": {
+          "selector": "[data-testid=\"review-text\"]",
+          "scope": "relative",
+          "tag": "p",
+          "class": "",
+          "data_testid": "review-text",
+          "id": "",
+          "example": "It’s fun, tastes good, and the energy boost is helpful during intense gaming sessions.",
+          "source": "dom_semantic",
+          "confidence": 0.9
+        },
+        "reviewer_name": {
+          "selector": null,
+          "scope": "derived",
+          "tag": "derived",
+          "class": null,
+          "data_testid": null,
+          "example": "It’s fun",
+          "source": "structural_candidate_text",
+          "confidence": 0.82
+        },
+        "date": {
+          "selector": "[data-testid=\"review-date\"]",
+          "scope": "relative",
+          "tag": "span",
+          "class": "",
+          "data_testid": "review-date",
+          "id": "",
+          "example": "2023-05-15",
+          "source": "dom_semantic",
+          "confidence": 0.94
+        }
+      },
+      "rating_example": null,
+      "date_example": "2023-05-15"
+    },
+    {
+      "score": 16,
+      "text_length": 103,
+      "text": "2023-05-10 These shoes are a hit with my twins. They love the lights and they seem to be quite durable.",
+      "tag": "div",
+      "class": "review",
+      "data_testid": "review",
+      "id": null,
+      "dom_path": "div#latest-reviews > div.review:nth-child(7)",
+      "xpath": "/html[1]/body[1]/div[1]/div[2]/div[1]/div[7]",
+      "stable_locator": "[data-testid=\"review\"]",
+      "parent_context": "2023-05-18 Unique flavor and great energy boost. It's the perfect gamer's drink! 2023-05-17 Good flavor and keeps me energized. The bottle design is really fun. 2023-05-16 Excellent energy drink for gamers. The tropical flavor is refreshing. 2023-05-15 It’s fun, tastes good, and the energy boost is helpful during intense gaming sessions. 2023-05-15 The best sneakers I've bought in a long time. Stylish, comfortable and the leather quality is top-notch. 2023-05-12 The cherry cola flavor is a win. Keeps me energized and focused. 2023-05-10 These shoes are a hit with my twins. They love the lights and they seem to be quite durable. 2023-05-01 Excellent boots for outdoor adventures. They offer great support and are very comfortable. 2023-05-01 Nice design and good quality, but a bit too tight for me. Otherwise, it's a pretty cool beanie. 2023-04-25 Really enjoyed the citrus flavor and the energy boost it gives. 2023-04-25 Great concept, but the sizing is a bit off. Order a size larger. 2023-04-18 Delicious chocolates, and the box is pretty substantial. It'd make a nice gift. 2023-04-12 The boots are durable, but the laces could be better quality. 2023-04-11 This potion is a game changer",
+      "fields": {
+        "review_text": {
+          "selector": "[data-testid=\"review-text\"]",
+          "scope": "relative",
+          "tag": "p",
+          "class": "",
+          "data_testid": "review-text",
+          "id": "",
+          "example": "These shoes are a hit with my twins. They love the lights and they seem to be quite durable.",
+          "source": "dom_semantic",
+          "confidence": 0.9
+        },
+        "date": {
+          "selector": "[data-testid=\"review-date\"]",
+          "scope": "relative",
+          "tag": "span",
+          "class": "",
+          "data_testid": "review-date",
+          "id": "",
+          "example": "2023-05-10",
+          "source": "dom_semantic",
+          "confidence": 0.94
+        }
+      },
+      "rating_example": null,
+      "date_example": "2023-05-10"
+    },
+    {
+      "score": 16,
+      "text_length": 101,
+      "text": "2023-05-01 Excellent boots for outdoor adventures. They offer great support and are very comfortable.",
+      "tag": "div",
+      "class": "review",
+      "data_testid": "review",
+      "id": null,
+      "dom_path": "div#latest-reviews > div.review:nth-child(8)",
+      "xpath": "/html[1]/body[1]/div[1]/div[2]/div[1]/div[8]",
+      "stable_locator": "[data-testid=\"review\"]",
+      "parent_context": "2023-05-18 Unique flavor and great energy boost. It's the perfect gamer's drink! 2023-05-17 Good flavor and keeps me energized. The bottle design is really fun. 2023-05-16 Excellent energy drink for gamers. The tropical flavor is refreshing. 2023-05-15 It’s fun, tastes good, and the energy boost is helpful during intense gaming sessions. 2023-05-15 The best sneakers I've bought in a long time. Stylish, comfortable and the leather quality is top-notch. 2023-05-12 The cherry cola flavor is a win. Keeps me energized and focused. 2023-05-10 These shoes are a hit with my twins. They love the lights and they seem to be quite durable. 2023-05-01 Excellent boots for outdoor adventures. They offer great support and are very comfortable. 2023-05-01 Nice design and good quality, but a bit too tight for me. Otherwise, it's a pretty cool beanie. 2023-04-25 Really enjoyed the citrus flavor and the energy boost it gives. 2023-04-25 Great concept, but the sizing is a bit off. Order a size larger. 2023-04-18 Delicious chocolates, and the box is pretty substantial. It'd make a nice gift. 2023-04-12 The boots are durable, but the laces could be better quality. 2023-04-11 This potion is a game changer",
+      "fields": {
+        "review_text": {
+          "selector": "[data-testid=\"review-text\"]",
+          "scope": "relative",
+          "tag": "p",
+          "class": "",
+          "data_testid": "review-text",
+          "id": "",
+          "example": "Excellent boots for outdoor adventures. They offer great support and are very comfortable.",
+          "source": "dom_semantic",
+          "confidence": 0.9
+        },
+        "date": {
+          "selector": "[data-testid=\"review-date\"]",
+          "scope": "relative",
+          "tag": "span",
+          "class": "",
+          "data_testid": "review-date",
+          "id": "",
+          "example": "2023-05-01",
+          "source": "dom_semantic",
+          "confidence": 0.94
+        }
+      },
+      "rating_example": null,
+      "date_example": "2023-05-01"
+    },
+    {
+      "score": 16,
+      "text_length": 90,
+      "text": "2023-04-18 Delicious chocolates, and the box is pretty substantial. It'd make a nice gift.",
+      "tag": "div",
+      "class": "review",
+      "data_testid": "review",
+      "id": null,
+      "dom_path": "div#latest-reviews > div.review:nth-child(12)",
+      "xpath": "/html[1]/body[1]/div[1]/div[2]/div[1]/div[12]",
+      "stable_locator": "[data-testid=\"review\"]",
+      "parent_context": "2023-05-18 Unique flavor and great energy boost. It's the perfect gamer's drink! 2023-05-17 Good flavor and keeps me energized. The bottle design is really fun. 2023-05-16 Excellent energy drink for gamers. The tropical flavor is refreshing. 2023-05-15 It’s fun, tastes good, and the energy boost is helpful during intense gaming sessions. 2023-05-15 The best sneakers I've bought in a long time. Stylish, comfortable and the leather quality is top-notch. 2023-05-12 The cherry cola flavor is a win. Keeps me energized and focused. 2023-05-10 These shoes are a hit with my twins. They love the lights and they seem to be quite durable. 2023-05-01 Excellent boots for outdoor adventures. They offer great support and are very comfortable. 2023-05-01 Nice design and good quality, but a bit too tight for me. Otherwise, it's a pretty cool beanie. 2023-04-25 Really enjoyed the citrus flavor and the energy boost it gives. 2023-04-25 Great concept, but the sizing is a bit off. Order a size larger. 2023-04-18 Delicious chocolates, and the box is pretty substantial. It'd make a nice gift. 2023-04-12 The boots are durable, but the laces could be better quality. 2023-04-11 This potion is a game changer",
+      "fields": {
+        "review_text": {
+          "selector": "[data-testid=\"review-text\"]",
+          "scope": "relative",
+          "tag": "p",
+          "class": "",
+          "data_testid": "review-text",
+          "id": "",
+          "example": "Delicious chocolates, and the box is pretty substantial. It'd make a nice gift.",
+          "source": "dom_semantic",
+          "confidence": 0.9
+        },
+        "reviewer_name": {
+          "selector": null,
+          "scope": "derived",
+          "tag": "derived",
+          "class": null,
+          "data_testid": null,
+          "example": "Delicious chocolates",
+          "source": "structural_candidate_text",
+          "confidence": 0.82
+        },
+        "date": {
+          "selector": "[data-testid=\"review-date\"]",
+          "scope": "relative",
+          "tag": "span",
+          "class": "",
+          "data_testid": "review-date",
+          "id": "",
+          "example": "2023-04-18",
+          "source": "dom_semantic",
+          "confidence": 0.94
+        }
+      },
+      "rating_example": null,
+      "date_example": "2023-04-18"
+    },
+    {
+      "score": 16,
+      "text_length": 80,
+      "text": "2023-05-18 Unique flavor and great energy boost. It's the perfect gamer's drink!",
+      "tag": "div",
+      "class": "review",
+      "data_testid": "review",
+      "id": null,
+      "dom_path": "div#latest-reviews > div.review:nth-child(1)",
+      "xpath": "/html[1]/body[1]/div[1]/div[2]/div[1]/div[1]",
+      "stable_locator": "[data-testid=\"review\"]",
+      "parent_context": "2023-05-18 Unique flavor and great energy boost. It's the perfect gamer's drink! 2023-05-17 Good flavor and keeps me energized. The bottle design is really fun. 2023-05-16 Excellent energy drink for gamers. The tropical flavor is refreshing. 2023-05-15 It’s fun, tastes good, and the energy boost is helpful during intense gaming sessions. 2023-05-15 The best sneakers I've bought in a long time. Stylish, comfortable and the leather quality is top-notch. 2023-05-12 The cherry cola flavor is a win. Keeps me energized and focused. 2023-05-10 These shoes are a hit with my twins. They love the lights and they seem to be quite durable. 2023-05-01 Excellent boots for outdoor adventures. They offer great support and are very comfortable. 2023-05-01 Nice design and good quality, but a bit too tight for me. Otherwise, it's a pretty cool beanie. 2023-04-25 Really enjoyed the citrus flavor and the energy boost it gives. 2023-04-25 Great concept, but the sizing is a bit off. Order a size larger. 2023-04-18 Delicious chocolates, and the box is pretty substantial. It'd make a nice gift. 2023-04-12 The boots are durable, but the laces could be better quality. 2023-04-11 This potion is a game changer",
+      "fields": {
+        "review_text": {
+          "selector": "[data-testid=\"review-text\"]",
+          "scope": "relative",
+          "tag": "p",
+          "class": "",
+          "data_testid": "review-text",
+          "id": "",
+          "example": "Unique flavor and great energy boost. It's the perfect gamer's drink!",
+          "source": "dom_semantic",
+          "confidence": 0.9
+        },
+        "date": {
+          "selector": "[data-testid=\"review-date\"]",
+          "scope": "relative",
+          "tag": "span",
+          "class": "",
+          "data_testid": "review-date",
+          "id": "",
+          "example": "2023-05-18",
+          "source": "dom_semantic",
+          "confidence": 0.94
+        }
+      },
+      "rating_example": null,
+      "date_example": "2023-05-18"
+    },
+    {
+      "score": 16,
+      "text_length": 80,
+      "text": "2023-05-16 Excellent energy drink for gamers. The tropical flavor is refreshing.",
+      "tag": "div",
+      "class": "review",
+      "data_testid": "review",
+      "id": null,
+      "dom_path": "div#latest-reviews > div.review:nth-child(3)",
+      "xpath": "/html[1]/body[1]/div[1]/div[2]/div[1]/div[3]",
+      "stable_locator": "[data-testid=\"review\"]",
+      "parent_context": "2023-05-18 Unique flavor and great energy boost. It's the perfect gamer's drink! 2023-05-17 Good flavor and keeps me energized. The bottle design is really fun. 2023-05-16 Excellent energy drink for gamers. The tropical flavor is refreshing. 2023-05-15 It’s fun, tastes good, and the energy boost is helpful during intense gaming sessions. 2023-05-15 The best sneakers I've bought in a long time. Stylish, comfortable and the leather quality is top-notch. 2023-05-12 The cherry cola flavor is a win. Keeps me energized and focused. 2023-05-10 These shoes are a hit with my twins. They love the lights and they seem to be quite durable. 2023-05-01 Excellent boots for outdoor adventures. They offer great support and are very comfortable. 2023-05-01 Nice design and good quality, but a bit too tight for me. Otherwise, it's a pretty cool beanie. 2023-04-25 Really enjoyed the citrus flavor and the energy boost it gives. 2023-04-25 Great concept, but the sizing is a bit off. Order a size larger. 2023-04-18 Delicious chocolates, and the box is pretty substantial. It'd make a nice gift. 2023-04-12 The boots are durable, but the laces could be better quality. 2023-04-11 This potion is a game changer",
+      "fields": {
+        "review_text": {
+          "selector": "[data-testid=\"review-text\"]",
+          "scope": "relative",
+          "tag": "p",
+          "class": "",
+          "data_testid": "review-text",
+          "id": "",
+          "example": "Excellent energy drink for gamers. The tropical flavor is refreshing.",
+          "source": "dom_semantic",
+          "confidence": 0.9
+        },
+        "date": {
+          "selector": "[data-testid=\"review-date\"]",
+          "scope": "relative",
+          "tag": "span",
+          "class": "",
+          "data_testid": "review-date",
+          "id": "",
+          "example": "2023-05-16",
+          "source": "dom_semantic",
+          "confidence": 0.94
+        }
+      },
+      "rating_example": null,
+      "date_example": "2023-05-16"
+    }
+  ],
+  "dynamic_network": [
+    {
+      "url": "https://web-scraping.dev/api/graphql",
+      "method": "POST",
+      "status": 200,
+      "content_type": "application/json",
+      "request_body": "{\"query\":\"\\nquery GetReviews($first: Int, $after: String) {\\n  reviews(first: $first, after: $after) {\\n    edges {\\n      node {\\n        rid\\n        text\\n        rating\\n        date\\n      }\\n      cursor\\n    }\\n    pageInfo {\\n      startCursor\\n      endCursor\\n      hasPreviousPage\\n      hasNextPage\\n    }\\n  }\\n}\\n\",\"variables\":{\"first\":20,\"after\":\"\"}}",
+      "response_preview": "{\"data\":{\"reviews\":{\"edges\":[{\"node\":{\"rid\":\"teal-potion-4\",\"text\":\"Unique flavor and great energy boost. It's the perfect gamer's drink!\",\"rating\":5,\"date\":\"2023-05-18\"},\"cursor\":\"cmV2aWV3X2lkOnRlYWwtcG90aW9uLTQ=\"},{\"node\":{\"rid\":\"red-potion-4\",\"text\":\"Good flavor and keeps me energized. The bottle design is really fun.\",\"rating\":5,\"date\":\"2023-05-17\"},\"cursor\":\"cmV2aWV3X2lkOnJlZC1wb3Rpb24tNA==\"},{\"node\":{\"rid\":\"dragon-potion-4\",\"text\":\"Excellent energy drink for gamers. The tropical flavor is refreshing.\",\"rating\":4,\"date\":\"2023-05-16\"},\"cursor\":\"cmV2aWV3X2lkOmRyYWdvbi1wb3Rpb24tNA==\"},{\"node\":{\"rid\":\"blue-energy-potion-6\",\"text\":\"It\\u2019s fun, tastes good, and the energy boost is helpful during intense gaming sessions.\",\"rating\":5,\"date\":\"2023-05-15\"},\"cursor\":\"cmV2aWV3X2lkOmJsdWUtZW5lcmd5LXBvdGlvbi02\"},{\"node\":{\"rid\":\"classic-leather-sneakers-10\",\"text\":\"The best sneakers I've bought in a long time. Stylish, comfortable and the leather quality is top-notch.\",\"rating\":5,\"date\":\"2023"
+    }
+  ],
+  "review_strategy": {
+    "type": "api_pagination",
+    "confidence": "high",
+    "review_scroll_container": null,
+    "visible_pagination_controls": 0,
+    "api_pagination_detected": true,
+    "paginated_fetch": false,
+    "infinite_page": false,
+    "has_more_pages": false,
+    "cursor_pagination_detected": true,
+    "graphql_detected": true,
+    "page_numbers_detected": [],
+    "dynamic_scroll_detected": false,
+    "network_evidence_count": 1,
+    "candidate_count": 8
+  }
+}
