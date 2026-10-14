@@ -73,7 +73,7 @@ jobs:
           VOUCHED: ${{ steps.vouch.outputs.vouched }}
       - name: Save benchmark request
         if: steps.resolve.outputs.needed == 'true'
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.0
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.0
         with:
           name: benchmark-request-${{ github.run_attempt }}
           path: scripts/benchmarks/request/report.json
@@ -113,7 +113,7 @@ jobs:
           PRIME_TEAM_ID: ${{ vars.PRIME_BENCHMARK_TEAM_ID }}
       - name: Save benchmark results
         if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.0
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.0
         with:
           name: benchmark-results-${{ github.run_attempt }}
           path: scripts/benchmarks/results/
